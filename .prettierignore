@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+.local/
+review/
+package-lock.json
+
+# Preserve the authoritative build contracts verbatim.
+AGENTS.md
+.ai/GOAL.md
+.ai/SPEC.md
+.ai/WORKFLOW.md

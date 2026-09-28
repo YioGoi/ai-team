@@ -1,6 +1,6 @@
 AI Team v0.1 — Build Procedure and Runtime Loop
 
-Revision: 2026-09-19.
+Revision: 2026-09-19. Human amendment: 2026-09-25 — no cumulative child-call ceiling while developing AI Team; retain per-problem repair limits and all product runtime limits.
 
 This document deliberately separates two different loops:
 
@@ -50,19 +50,19 @@ A failed intervention is counted even when it addresses several issues
 
 Real model-consuming CHILD invocations
 
-12
+No cumulative bootstrap ceiling (explicit human instruction, 2026-09-25)
 
-Delegated build workers, live probes and every app-created live worker count
+Record delegated build workers, live probes and every app-created live worker; preserve historical consumption
 
-A read/help/version command or fake subprocess test is not a model-consuming child invocation. The parent Codex conversation's internal model calls cannot be hard counted or stopped by software that is not built yet; do not claim the 12-child cap is a total-token cap for the parent conversation.
+A read/help/version command or fake subprocess test is not a model-consuming child invocation. The parent Codex conversation's internal model calls cannot be hard counted or stopped by software that is not built yet; do not describe child-invocation accounting as a total-token cap for the parent conversation.
 
 Before a repair, record issue ID, evidence, hypothesis, planned intervention and check. After validation, record the result. After three failed meaningful repairs on the same issue, stop working on it. No fourth autonomous repair, phase renaming, issue alias, provider change or fresh task used to escape the limit.
 
-Before a real child dispatch, reserve its call budget in STATUS. App live runs must receive a LOWERED invocation cap equal to the remaining build allowance, not their normal default. Count their actual downstream calls in the same build ledger. An interrupted/indeterminate child reservation is conservatively consumed.
+Before a real child dispatch, record its planned bounded run allowance in STATUS. There is no remaining cumulative build-call allowance after the human amendment. Each app live run must still freeze and enforce a runtime invocation cap no greater than Part II defaults. Count actual downstream calls in the build ledger without resetting historical consumption. An interrupted/indeterminate child reservation is conservatively consumed.
 
 Use fake providers until offline mechanics work. Do not consume the live budget to discover syntax errors in normal application code. A missing login or OS permission is a human dependency, not something to “repair” three times.
 
-When a live credential/capability dependency blocks one milestone, finish only independent safe offline work. A global failed-repair/live-call cap prevents more operations in that class; do not start replacement loops. If a required code defect remains exhausted, hand off the partial result with the exact evidence.
+When a live credential/capability dependency blocks one milestone, finish only independent safe offline work. The global failed-repair cap prevents further failed-repair interventions; do not start replacement loops. If a required code defect remains exhausted, hand off the partial result with the exact evidence.
 
 B.3 Build milestones and exit evidence
 
@@ -112,7 +112,7 @@ Exit: command-level integration tests, path-with-spaces tests, input snapshot te
 
 B7 — Bounded live proof and engineering handoff
 
-Only after the offline gate passes, use already-authorized intended CLI logins and verified permission profiles for tiny live probes. Select an available real profile explicitly. Run the disposable task with the remaining build live budget enforced in the child controller. No production project is the proving fixture.
+Only after the offline gate passes, use already-authorized intended CLI logins and verified permission profiles for tiny live probes. Select an available real profile explicitly. Run the disposable task with an explicitly frozen per-run runtime invocation cap enforced in the child controller; the human removed the cumulative bootstrap call ceiling. No production project is the proving fixture.
 
 Record host, executable/provider versions, auth-route evidence without secrets, role/session identities, actual candidate SHA, full diff, command results and external oracle. At least one real complete profile on the Mac is required for the live-working-team claim. A mixed-profile run is separate optional evidence at this stage.
 

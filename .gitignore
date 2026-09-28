@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+.DS_Store
+
+# Local runs, review artifacts and preserved execution history
+.local/
+review/
+
+# Credentials are never repository inputs
+.env
+.env.*
+!.env.example

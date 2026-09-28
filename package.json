@@ -1,0 +1,35 @@
+{
+  "name": "ai-team",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "ai-team": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests scripts",
+    "test": "vitest run --dir tests --maxWorkers=2 --exclude tests/smoke.test.ts",
+    "smoke": "vitest run --dir tests tests/smoke.test.ts --passWithNoTests=false",
+    "check": "npm run format:check && npm run typecheck && npm run lint && npm run test && npm run build && npm run smoke",
+    "ai": "node dist/cli.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.6.2",
+    "eslint": "10.11.0",
+    "prettier": "3.9.9",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.0",
+    "vitest": "5.0.1"
+  }
+}
